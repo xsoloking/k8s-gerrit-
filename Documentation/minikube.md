@@ -128,7 +128,7 @@ A guide for all suported OSs can be found [here](https://docs.helm.sh/using_helm
 
 ## Start an NFS-server
 
-The helm-charts need a volume with ReadWriteMany access mode to store
+The helm-charts need a volume with ReadWriteOnce access mode to store
 git-repositories. This guide will use the nfs-server-provisioner chart to provide
 NFS-volumes directly in the cluster. A basic configuration file for the nfs-server-
 provisioner-chart is provided in the supplements-directory. It can be installed

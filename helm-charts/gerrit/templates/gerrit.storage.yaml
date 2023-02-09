@@ -10,7 +10,7 @@ metadata:
     release: {{ .Release.Name }}
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   resources:
     requests:
       storage: {{ .Values.gerrit.plugins.cache.size }}
@@ -29,7 +29,7 @@ metadata:
     release: {{ .Release.Name }}
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   resources:
     requests:
       storage: 10Mi

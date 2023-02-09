@@ -242,7 +242,7 @@ class GerritDeployment(AbstractDeployment):
                 api_version="v1",
                 metadata=client.V1ObjectMeta(name="repo-storage"),
                 spec=client.V1PersistentVolumeClaimSpec(
-                    access_modes=["ReadWriteMany"],
+                    access_modes=["ReadWriteOnce"],
                     storage_class_name=self.storageclass,
                     resources=client.V1ResourceRequirements(
                         requests={"storage": "1Gi"}

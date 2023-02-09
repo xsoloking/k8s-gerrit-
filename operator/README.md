@@ -19,7 +19,7 @@ provided:
 - An (unused) Kubernetes cluster
 - The 'default' StorageClass that supports ReadWriteOnce access. It has to be
   possible to provision volumes using this StorageClass.
-- A StorageClass that supports ReadWriteMany access. It has to be possible to
+- A StorageClass that supports ReadWriteOnce access. It has to be possible to
   provision volumes using this StorageClass. Such a StorageClass could be provided
   by the [NFS-subdir-provisioner chart](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner).
 - An [Nginx Ingress Controller](https://github.com/kubernetes/ingress-nginx)
@@ -141,8 +141,8 @@ spec:
     ## Name of a StorageClass allowing ReadWriteOnce access. (default: default)
     readWriteOnce: default
 
-    ## Name of a StorageClass allowing ReadWriteMany access. (default: shared-storage)
-    readWriteMany: shared-storage
+    ## Name of a StorageClass allowing ReadWriteOnce access. (default: shared-storage)
+    ReadWriteOnce: shared-storage
 
     ## NFS is not well supported by Kubernetes. These options provide a workaround
     ## to ensure correct file ownership and id mapping
@@ -171,7 +171,7 @@ spec:
 
   ## Storage for git repositories
   gitRepositoryStorage:
-    ## Size of the volume (ReadWriteMany) used to store git repositories. (mandatory)
+    ## Size of the volume (ReadWriteOnce) used to store git repositories. (mandatory)
     size: 1Gi
 
     ## Name of a specific persistent volume to claim (optional)
@@ -186,7 +186,7 @@ spec:
 
   ## Storage for logs
   logsStorage:
-    ## Size of the volume (ReadWriteMany) used to store logs. (mandatory)
+    ## Size of the volume (ReadWriteOnce) used to store logs. (mandatory)
     size: 1Gi
 
     ## Name of a specific persistent volume to claim (optional)

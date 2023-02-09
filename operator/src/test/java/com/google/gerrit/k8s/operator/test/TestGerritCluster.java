@@ -73,7 +73,7 @@ public class TestGerritCluster {
     logStorage.setSize(Quantity.parse("1Gi"));
 
     StorageClassConfig storageClassConfig = new StorageClassConfig();
-    storageClassConfig.setReadWriteMany(testProps.getRWMStorageClass());
+    storageClassConfig.setReadWriteOnce(testProps.getRWMStorageClass());
 
     NfsWorkaroundConfig nfsWorkaround = new NfsWorkaroundConfig();
     nfsWorkaround.setEnabled(isNfsEnabled);

@@ -5,7 +5,7 @@ metadata:
 spec:
   storageClasses:
     readWriteOnce: default
-    readWriteMany: nfs-client
+    ReadWriteOnce: nfs-client
   gitRepositoryStorage:
     size: 1Gi
   logsStorage:

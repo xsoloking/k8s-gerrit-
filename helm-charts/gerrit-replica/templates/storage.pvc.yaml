@@ -5,7 +5,7 @@ metadata:
   name: {{ .Release.Name }}-git-repositories-pvc
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   resources:
     requests:
       storage: {{ .Values.gitRepositoryStorage.size }}
@@ -19,7 +19,7 @@ metadata:
   name: {{ .Release.Name }}-log-pvc
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   resources:
     requests:
       storage: {{ .Values.logStorage.size }}

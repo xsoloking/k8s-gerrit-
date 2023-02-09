@@ -17,23 +17,23 @@ package com.google.gerrit.k8s.operator.cluster;
 public class StorageClassConfig {
 
   String readWriteOnce = "default";
-  String readWriteMany = "shared-storage";
+  String ReadWriteOnce = "shared-storage";
   NfsWorkaroundConfig nfsWorkaround = new NfsWorkaroundConfig();
 
   public String getReadWriteOnce() {
     return readWriteOnce;
   }
 
-  public String getReadWriteMany() {
-    return readWriteMany;
+  public String getReadWriteOnce() {
+    return ReadWriteOnce;
   }
 
   public void setReadWriteOnce(String readWriteOnce) {
     this.readWriteOnce = readWriteOnce;
   }
 
-  public void setReadWriteMany(String readWriteMany) {
-    this.readWriteMany = readWriteMany;
+  public void setReadWriteOnce(String ReadWriteOnce) {
+    this.ReadWriteOnce = ReadWriteOnce;
   }
 
   public NfsWorkaroundConfig getNfsWorkaround() {

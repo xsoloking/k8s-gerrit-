@@ -118,7 +118,7 @@ def pytest_addoption(parser):
         "--rwm-storageclass",
         action="store",
         default="shared-storage",
-        help="Name of the storageclass used for ReadWriteMany access."
+        help="Name of the storageclass used for ReadWriteOnce access."
         + "(default: shared-storage)",
     )
     parser.addoption(
