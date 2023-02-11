@@ -2,14 +2,14 @@ gitRepositoryStorage:
   externalPVC:
     use: false
     name: git-repositories-pvc
-  size: 5Gi
+  size: 1Gi
 
 logStorage:
   enabled: false
   externalPVC:
     use: false
     name: gerrit-logs-pvc
-  size: 5Gi
+  size: 1Gi
   cleanup:
     enabled: false
     schedule: "0 0 * * *"
@@ -45,10 +45,10 @@ gerrit:
   resources:
     requests:
       cpu: 1
-      memory: 4Gi
+      memory: 2Gi
     limits:
       cpu: 1
-      memory: 4Gi
+      memory: 2Gi
 
   persistence:
     enabled: true
@@ -71,9 +71,9 @@ gerrit:
     #         app: git-backend
 
   service:
-    type: NodePort
+    type: LoadBalancer
     http:
-      port: 80
+      port: 8080
     ssh:
       enabled: true
       port: 29418
@@ -96,7 +96,7 @@ gerrit:
           # LoadBalancer's external IP. This can only be done manually after installing
           # the chart, when you know the external IP the LoadBalancer got from the
           # cluster.
-          canonicalWebUrl = http://130.211.244.34:31452/
+          canonicalWebUrl = http://34.81.181.231:8080/
           disableReverseDnsLookup = true
         [index]
           type = LUCENE
@@ -126,7 +126,7 @@ gerrit:
           javaOptions = -Xms200m
           # Has to be lower than 'gerrit.resources.limits.memory'. Also
           # consider memories used by other applications in the container.
-          javaOptions = -Xmx2g
+          javaOptions = -Xmx1g
 
       replication.config: |-
         [gerrit]
@@ -135,6 +135,7 @@ gerrit:
           defaultForceUpdate = true
 
         [remote "replica"]
+          adminUrl = gerrit+http://gerrit-slave-git-backend-service/
           url = http://gerrit-slave-git-backend-service/git/${name}.git
           replicationDelay = 0
           timeout = 30
@@ -146,7 +147,7 @@ gerrit:
         #[httpd]
         #  sslKeyPassword = gerrit
 
-        Credentials for replication targets
+        #Credentials for replication targets
         [remote "replica"]
           username = git
           password = secret

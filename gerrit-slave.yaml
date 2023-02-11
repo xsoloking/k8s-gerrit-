@@ -14,7 +14,7 @@ gitRepositoryStorage:
   externalPVC:
     use: false
     name: git-repositories-pvc
-  size: 5Gi
+  size: 1Gi
 
 
 logStorage:
@@ -33,8 +33,8 @@ gitBackend:
     htpasswd: git:$apr1$O/LbLKC7$Q60GWE7OcqSEMSfe/K8xU.
     # TODO: Create htpasswd-file on container startup instead and set user
     # and password in values.yaml.
-    user: git
-    password: secret
+    # user: git
+    # password: secret
 
 
 gitGC:
@@ -50,14 +50,22 @@ gerritReplica:
   resources:
     requests:
       cpu: 1
-      memory: 4Gi
+      memory: 2Gi
     limits:
       cpu: 1
-      memory: 4Gi
+      memory: 2Gi
 
   persistence:
     enabled: true
-    size: 5Gi
+    size: 1Gi
+
+  service:
+    type: LoadBalancer
+    http:
+      port: 8081
+    ssh:
+      enabled: true
+      port: 29419
 
 
   etc:
@@ -74,7 +82,7 @@ gerritReplica:
           # LoadBalancer's external IP. This can only be done manually after installing
           # the chart, when you know the external IP the LoadBalancer got from the
           # cluster.
-          canonicalWebUrl = http://130.211.244.34:31452/
+          canonicalWebUrl = http://34.81.181.231:8081/
           disableReverseDnsLookup = true
         [index]
           type = LUCENE
